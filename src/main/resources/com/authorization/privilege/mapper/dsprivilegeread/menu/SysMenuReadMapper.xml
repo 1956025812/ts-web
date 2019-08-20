@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.authorization.privilege.mapper.dsprivilegeread.menu.SysMenuReadMapper" >
+
+
+  <resultMap id="BaseResultMap" type="com.authorization.privilege.entity.dsprivelege.menu.SysMenu" >
+    <id column="mid" property="mid" jdbcType="VARCHAR" />
+    <result column="system_key" property="systemKey" jdbcType="VARCHAR" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="parent_mid" property="parentMid" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="create_uid" property="createUid" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+
+  <!-- 查询菜单VO对象集合返回MAP -->
+  <resultMap id="SelectSysMenuVOListMap" type="com.authorization.privilege.vo.menu.SysMenuVO">
+    <id column="mid" property="mid" jdbcType="VARCHAR" />
+    <result column="system_key" property="systemKey" jdbcType="VARCHAR" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="parent_mid" property="parentMid" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+  </resultMap>
+
+
+  <!-- 查询菜单详情返回MAP -->
+  <resultMap id="SelectSysMenuVODetailMap" type="com.authorization.privilege.vo.menu.SysMenuVO">
+      <id column="mid" property="mid" jdbcType="VARCHAR" />
+      <result column="system_key" property="systemKey" jdbcType="VARCHAR" />
+      <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+      <result column="type" property="type" jdbcType="INTEGER" />
+      <result column="level" property="level" jdbcType="INTEGER" />
+      <result column="url" property="url" jdbcType="VARCHAR" />
+      <result column="parent_mid" property="parentMid" jdbcType="VARCHAR" />
+      <result column="sort" property="sort" jdbcType="INTEGER" />
+      <result column="state" property="state" jdbcType="INTEGER" />
+      <result column="description" property="description" jdbcType="VARCHAR" />
+      <result column="create_uid" property="createUid" jdbcType="VARCHAR" />
+      <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+      <result column="update_uid" property="updateUid" jdbcType="VARCHAR" />
+      <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+
+  <!-- 单表查询菜单列表返回MAP -->
+  <resultMap id="SelectSysMenuListMap" type="com.authorization.privilege.vo.menu.SysMenuVO">
+      <id column="mid" property="mid" jdbcType="VARCHAR" />
+      <result column="system_key" property="systemKey" jdbcType="VARCHAR" />
+      <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+      <result column="type" property="type" jdbcType="INTEGER" />
+      <result column="level" property="level" jdbcType="INTEGER" />
+      <result column="url" property="url" jdbcType="VARCHAR" />
+      <result column="parent_mid" property="parentMid" jdbcType="VARCHAR" />
+      <result column="sort" property="sort" jdbcType="INTEGER" />
+      <result column="create_uid" property="createUid" jdbcType="VARCHAR" />
+      <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+
+  <!-- 查询菜单ID和菜单VO对象MAP集合返回MAP -->
+  <resultMap id="SelectMenuIdAndSysMenuVOMapMap" type="com.authorization.privilege.vo.menu.SysMenuVO">
+      <id column="mid" property="mid" jdbcType="VARCHAR" />
+      <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+  </resultMap>
+
+
+
+  <sql id="Base_Column_List" >
+    mid, system_key, menu_name, type, level, url, parent_mid, sort, state, description,
+    create_uid, create_time, update_uid, update_time
+  </sql>
+
+
+  <!-- 根据主键查询菜单 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT
+        <include refid="Base_Column_List" />
+    FROM
+        sys_menu
+    WHERE
+        mid = #{mid,jdbcType=VARCHAR}
+  </select>
+
+
+  <!-- 查询菜单VO对象集合 -->
+  <select id="selectSysMenuVOList" parameterType="com.authorization.privilege.vo.menu.SysMenuVO" resultMap="SelectSysMenuVOListMap">
+    SELECT
+        M.mid, M.system_key, M.menu_name, M.`level`, M.url, M.parent_mid, M.`type`, M.sort
+    FROM
+        sys_menu AS M
+    WHERE
+        M.state = 1
+        <if test="type != null">
+          AND M.type = #{type}
+        </if>
+        <if test="systemKey != null and systemKey != ''">
+          AND M.system_key = #{systemKey}
+        </if>
+        <if test="parentMid != null and parentMid != ''">
+          AND M.parent_mid = #{parentMid}
+        </if>
+        <if test="level != null">
+          AND M.level = #{level}
+        </if>
+    ORDER BY M.system_key ASC, M.level ASC, M.sort ASC
+  </select>
+
+
+  <!-- 查询菜单详情 -->
+  <select id="selectSysMenuVODetail" parameterType="com.authorization.privilege.vo.menu.SysMenuVO" resultMap="SelectSysMenuVODetailMap">
+      SELECT
+        M.mid, M.system_key, M.menu_name, M.`level`, M.url, M.parent_mid, M.`type`, M.sort, M.description,
+        M.create_uid, M.create_time, M.update_uid, M.update_time
+      FROM
+        sys_menu AS M
+      <trim prefix="WHERE" prefixOverrides="AND|OR">
+          <if test="mid != null and mid != ''">
+              AND M.mid = #{mid}
+          </if>
+      </trim>
+  </select>
+
+
+  <!-- 查询菜单列表数量 -->
+  <select id="selectCountOfSysMenuList" parameterType="com.authorization.privilege.vo.menu.SysMenuVO" resultType="java.lang.Integer">
+      SELECT
+          COUNT(1)
+      FROM
+          sys_menu AS M
+      <trim prefix="WHERE" prefixOverrides="AND|OR">
+          AND M.state > 0
+          <if test="parentMid != null and parentMid != ''">
+              AND M.parent_mid = #{parentMid}
+          </if>
+      </trim>
+  </select>
+
+
+  <!-- 单表查询菜单列表 -->
+  <select id="selectSysMenuList" parameterType="com.authorization.privilege.vo.menu.SysMenuVO" resultMap="SelectSysMenuListMap">
+      SELECT
+          mid, system_key, menu_name, `type`, `level`, parent_mid, sort, state, create_uid, create_time
+      FROM
+          sys_menu
+      WHERE
+          state > 0
+          <if test="systemKey != null and systemKey != ''">
+              AND system_key = #{systemKey}
+          </if>
+          <if test="menuName != null and menuName != ''">
+              AND menu_name LIKE CONCAT("%", #{menuName} ,"%")
+          </if>
+          <if test="parentMid != null and parentMid != ''">
+              AND parent_mid = #{parentMid}
+          </if>
+          <if test="state != null">
+              AND state = #{state}
+          </if>
+          <if test="level != null">
+              AND `level` = #{level}
+          </if>
+  </select>
+
+
+  <!-- 查询菜单ID和菜单VO对象MAP集合 -->
+  <select id="selectMenuIdAndSysMenuVOMap" parameterType="com.authorization.privilege.vo.menu.SysMenuVO"
+          resultMap="SelectMenuIdAndSysMenuVOMapMap">
+      SELECT
+          mid, menu_name
+      FROM
+          sys_menu
+      WHERE
+          state > 0
+  </select>
+
+
+</mapper>

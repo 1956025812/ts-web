@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.authorization.privilege.mapper.dsprivilegeread.role.SysRoleReadMapper">
+
+  <resultMap id="BaseResultMap" type="com.authorization.privilege.entity.dsprivelege.role.SysRole">
+    <id column="rid" jdbcType="VARCHAR" property="rid" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="system_key" jdbcType="VARCHAR" property="systemKey" />
+    <result column="parent_rid" jdbcType="VARCHAR" property="parentRid" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="create_uid" jdbcType="VARCHAR" property="createUid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_uid" jdbcType="VARCHAR" property="updateUid" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+
+
+  <!-- 查询角色列表返回MAP -->
+  <resultMap id="SelectSysRoleListMap" type="com.authorization.privilege.vo.role.SysRoleVO">
+    <id column="rid" jdbcType="VARCHAR" property="rid" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="system_key" jdbcType="VARCHAR" property="systemKey" />
+    <result column="parent_rid" jdbcType="VARCHAR" property="parentRid" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+  </resultMap>
+
+
+
+  <!-- 查询角色ID和角色VO对象MAP返回MAP  -->
+  <resultMap id="SelectRoleIdAndRoleVOMapMap" type="com.authorization.privilege.vo.role.SysRoleVO">
+    <id column="rid" jdbcType="VARCHAR" property="rid" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+  </resultMap>
+
+
+
+  <!-- 查询角色VO对象返回MAP -->
+  <resultMap id="SelectSysRoleVOMap" type="com.authorization.privilege.vo.role.SysRoleVO">
+      <id column="rid" jdbcType="VARCHAR" property="rid" />
+      <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+      <result column="description" jdbcType="VARCHAR" property="description" />
+      <result column="system_key" jdbcType="VARCHAR" property="systemKey" />
+      <result column="parent_rid" jdbcType="VARCHAR" property="parentRid" />
+      <result column="state" jdbcType="INTEGER" property="state" />
+      <result column="create_uid" jdbcType="VARCHAR" property="createUid" />
+      <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+      <result column="update_uid" jdbcType="VARCHAR" property="updateUid" />
+      <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    rid, role_name, description, system_key, parent_rid, state, level, create_uid, create_time, update_uid, update_time
+  </sql>
+
+
+
+  <!-- 根据主键查询角色对象 -->
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+        <include refid="Base_Column_List" />
+    FROM
+        sys_role
+    WHERE
+        rid = #{rid,jdbcType=VARCHAR}
+  </select>
+
+
+
+  <!-- 查询角色列表 -->
+  <select id="selectSysRoleList" parameterType="com.authorization.privilege.vo.role.SysRoleVO" resultMap="SelectSysRoleListMap">
+    SELECT
+        rid, role_name, system_key, parent_rid, state, `level`
+    FROM
+        sys_role
+    WHERE
+        state > 0
+        <if test="systemKey != null and systemKey != ''">
+          AND system_key = #{systemKey}
+        </if>
+        <if test="roleName != null and roleName != ''">
+          AND role_name LIKE CONCAT("%", #{roleName} ,"%")
+        </if>
+        <if test="parentRid != null and parentRid != ''">
+          AND parent_rid = #{parentRid}
+        </if>
+        <if test="state != null">
+          AND state = #{state}
+        </if>
+        <if test="level != null">
+          AND level = #{level}
+        </if>
+        <if test="startTime != null">
+          AND create_time >= #{startTime}
+        </if>
+        <if test="endTime != null">
+          AND create_time <![CDATA[ <= ]]> #{endTime}
+        </if>
+      ORDER BY create_time DESC
+  </select>
+
+
+
+  <!-- 查询角色ID和角色VO对象MAP -->
+  <select id="selectRoleIdAndRoleVOMap" parameterType="com.authorization.privilege.vo.role.SysRoleVO" resultMap="SelectRoleIdAndRoleVOMapMap">
+    SELECT
+        rid, role_name
+    FROM
+        sys_role
+    WHERE
+        state > 0
+  </select>
+
+
+
+  <!-- 查询角色VO对象 -->
+  <select id="selectSysRoleVO" parameterType="com.authorization.privilege.vo.role.SysRoleVO" resultMap="SelectSysRoleVOMap">
+      SELECT
+          rid, role_name, description, system_key, parent_rid, state, create_uid, create_time, update_uid, update_time
+      FROM
+          sys_role
+      <trim prefix="WHERE" prefixOverrides="AND|OR">
+          <if test="rid != null and rid != ''">
+              AND rid = #{rid}
+          </if>
+      </trim>
+  </select>
+
+
+
+  <!-- 查询角色列表数量 -->
+  <select id="selectCountOfSysRoleList" parameterType="com.authorization.privilege.vo.role.SysRoleVO" resultType="java.lang.Integer">
+      SELECT
+          COUNT(1)
+      FROM
+          sys_role
+      <trim prefix="WHERE" prefixOverrides="AND|OR">
+          AND state > 0
+          <if test="parentRid != null and parentRid != ''">
+              AND parent_rid = #{parentRid}
+          </if>
+      </trim>
+  </select>
+
+</mapper>
