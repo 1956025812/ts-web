@@ -53,6 +53,17 @@ public class TraceCycleController extends BaseController {
     }
 
 
+    @ApiOperation("查询轨迹环节列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "loginUid", value = "登录用户ID", required = true),
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "id", value = "轨迹环节ID", required = false)
+    })
+    @GetMapping("/list")
+    public ResultVO<TraceCycleVO> selectTraceCycleVOList(@ApiIgnore TraceCycleVO traceCycleVO) throws Exception {
+        return this.traceCycleReadService.selectTraceCycleVOList(traceCycleVO);
+    }
+
+
     @ApiOperation("新增轨迹环节")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "body", dataType = "String", name = "loginUid", value = "登录用户ID", required = true),

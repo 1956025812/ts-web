@@ -15,6 +15,7 @@ public interface TraceCycleReadService {
      */
     ResultVO<PageVO<TraceCycleVO>> selectTraceCycleVOPage(TraceCycleVO traceCycleVO) throws Exception;
 
-
     ResultVO<TraceCycleVO> selectTraceCycleVODetail(TraceCycleVO traceCycleVO) throws Exception;
+
+    ResultVO<TraceCycleVO> selectTraceCycleVOList(TraceCycleVO traceCycleVO) throws Exception;
 }

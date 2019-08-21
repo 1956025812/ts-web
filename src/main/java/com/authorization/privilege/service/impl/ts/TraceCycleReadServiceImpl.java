@@ -35,12 +35,20 @@ public class TraceCycleReadServiceImpl implements TraceCycleReadService {
     }
 
 
-
     @Override
     public ResultVO<TraceCycleVO> selectTraceCycleVODetail(TraceCycleVO traceCycleVO) throws Exception {
 
         TraceCycle traceCycle = this.traceCycleReadMapper.selectByPrimaryKey(traceCycleVO.getId());
 
         return ResultVO.getSuccess("查询轨迹环节成功", traceCycle);
+    }
+
+
+    @Override
+    public ResultVO<TraceCycleVO> selectTraceCycleVOList(TraceCycleVO traceCycleVO) throws Exception {
+
+        List<TraceCycleVO> traceCycleVOList = this.traceCycleReadMapper.selectTraceCycleVOList(traceCycleVO);
+
+        return ResultVO.getSuccess("查询轨迹环节列表成功", traceCycleVOList);
     }
 }

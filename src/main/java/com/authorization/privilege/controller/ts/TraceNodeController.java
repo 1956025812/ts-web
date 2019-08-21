@@ -31,9 +31,9 @@ public class TraceNodeController extends BaseController {
             @ApiImplicitParam(paramType = "query", dataType = "Long", name = "currentPage", value = "当前页码", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "Long", name = "pageSize", value = "每页记录数", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "String", name = "nodeCode", value = "节点代码", required = false),
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "nodeCode", value = "节点代码", required = false),
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "nodeCn", value = "节点中文名称", required = false),
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "nodeEn", value = "节点英文名称", required = false),
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "cycleCode", value = "环节代码", required = false),
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "nodeNameCn", value = "节点中文名称", required = false),
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "nodeNameEn", value = "节点英文名称", required = false),
             @ApiImplicitParam(paramType = "query", dataType = "String", name = "startTime", value = "修改开始时间", required = false),
             @ApiImplicitParam(paramType = "query", dataType = "String", name = "endTime", value = "结束结束时间", required = false)
     })

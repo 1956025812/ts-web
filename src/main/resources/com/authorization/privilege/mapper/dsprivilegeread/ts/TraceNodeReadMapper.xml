@@ -53,6 +53,26 @@
         t_trace_node
     WHERE
         delete_time = 0
+        <if test="cycleCode != null and cycleCode != ''">
+          AND cycle_code = #{cycleCode}
+        </if>
+        <if test="nodeCode != null and nodeCode != ''">
+          AND node_code LIKE CONCAT ("%", #{nodeCode}, "%")
+        </if>
+        <if test="nodeNameCn != null and nodeNameCn != ''">
+          AND node_name_cn LIKE CONCAT ("%", #{nodeNameCn}, "%")
+        </if>
+        <if test="nodeNameEn != null and nodeNameEn != ''">
+          AND node_name_en LIKE CONCAT ("%", #{nodeNameEn}, "%")
+        </if>
+        <if test="startTime != null">
+          AND update_time >= #{startTime}
+        </if>
+        <if test="endTime != null">
+          AND update_time <![CDATA[ <= ]]> #{endTime}
+        </if>
+    ORDER BY update_time DESC
+
   </select>
 
 
