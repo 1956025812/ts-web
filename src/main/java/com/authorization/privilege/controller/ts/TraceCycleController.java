@@ -55,41 +55,41 @@ public class TraceCycleController extends BaseController {
 
     @ApiOperation("新增轨迹环节")
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "loginUid", value = "登录用户ID", required = true),
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "cycleCode", value = "环节代码", required = false),
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "cycleCn", value = "环节中文名称", required = false),
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "cycleEn", value = "环节英文名称", required = false),
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "remark", value = "环节用途描述", required = false)
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "loginUid", value = "登录用户ID", required = true),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "cycleCode", value = "环节代码", required = false),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "cycleCn", value = "环节中文名称", required = false),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "cycleEn", value = "环节英文名称", required = false),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "remark", value = "环节用途描述", required = false)
     })
     @PostMapping("/save")
-    public ResultVO<Void> saveTraceCycle(@RequestBody TraceCycleVO traceCycleVO) throws Exception {
+    public ResultVO<Void> saveTraceCycle(@ApiIgnore @RequestBody TraceCycleVO traceCycleVO) throws Exception {
         return this.traceCycleWriteService.saveTraceCycle(traceCycleVO);
     }
 
 
     @ApiOperation("修改轨迹环节")
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "loginUid", value = "登录用户ID", required = true),
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "id", value = "环节主键", required = false),
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "cycleCode", value = "环节代码", required = false),
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "cycleCn", value = "环节中文名称", required = false),
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "cycleEn", value = "环节英文名称", required = false),
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "remark", value = "环节用途描述", required = false)
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "loginUid", value = "登录用户ID", required = true),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "id", value = "环节主键", required = false),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "cycleCode", value = "环节代码", required = false),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "cycleCn", value = "环节中文名称", required = false),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "cycleEn", value = "环节英文名称", required = false),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "remark", value = "环节用途描述", required = false)
     })
     @PostMapping("/update")
-    public ResultVO<Void> updateTraceCycle(@RequestBody TraceCycleVO traceCycleVO) throws Exception {
+    public ResultVO<Void> updateTraceCycle(@ApiIgnore @RequestBody TraceCycleVO traceCycleVO) throws Exception {
         return this.traceCycleWriteService.updateTraceCycle(traceCycleVO);
     }
 
 
     @ApiOperation("删除轨迹环节")
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "loginUid", value = "登录用户ID", required = true),
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "id", value = "环节主键ID", required = false),
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "tcids", value = "环节主键ID集合", required = false)
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "loginUid", value = "登录用户ID", required = true),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "id", value = "环节主键ID", required = false),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "tcids", value = "环节主键ID集合", required = false)
     })
     @PostMapping("/delete")
-    public ResultVO<Void> deleteTraceCycle(@RequestBody TraceCycleVO traceCycleVO) throws Exception {
+    public ResultVO<Void> deleteTraceCycle(@ApiIgnore @RequestBody TraceCycleVO traceCycleVO) throws Exception {
         return this.traceCycleWriteService.deleteTraceCycle(traceCycleVO);
     }
 
