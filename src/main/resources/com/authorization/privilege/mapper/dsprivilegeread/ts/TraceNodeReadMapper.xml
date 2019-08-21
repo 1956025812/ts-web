@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.authorization.privilege.mapper.dsprivilegeread.ts.TraceNodeReadMapper">
+  
+  <resultMap id="BaseResultMap" type="com.authorization.privilege.entity.dsprivelege.ts.TraceNode">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="cycle_code" jdbcType="VARCHAR" property="cycleCode" />
+    <result column="node_code" jdbcType="VARCHAR" property="nodeCode" />
+    <result column="node_name_cn" jdbcType="VARCHAR" property="nodeNameCn" />
+    <result column="node_name_en" jdbcType="VARCHAR" property="nodeNameEn" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="BIGINT" property="deleteTime" />
+  </resultMap>
+
+
+  <resultMap id="SelectTraceNodeVOListMap" type="com.authorization.privilege.vo.ts.TraceNodeVO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="cycle_code" jdbcType="VARCHAR" property="cycleCode" />
+    <result column="node_code" jdbcType="VARCHAR" property="nodeCode" />
+    <result column="node_name_cn" jdbcType="VARCHAR" property="nodeNameCn" />
+    <result column="node_name_en" jdbcType="VARCHAR" property="nodeNameEn" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    id, cycle_code, node_code, node_name_cn, node_name_en, remark, create_by, create_time,
+    update_by, update_time, delete_time
+  </sql>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+        <include refid="Base_Column_List" />
+    FROM
+        t_trace_node
+    WHERE
+        id = #{id,jdbcType=BIGINT}
+  </select>
+
+
+  <select id="selectTraceNodeVOList" parameterType="com.authorization.privilege.vo.ts.TraceNodeVO"
+          resultMap="SelectTraceNodeVOListMap">
+    SELECT
+        id, cycle_code, node_code, node_name_cn, node_name_en, remark, update_by, update_time
+    FROM
+        t_trace_node
+    WHERE
+        delete_time = 0
+  </select>
+
+
+
+</mapper>
