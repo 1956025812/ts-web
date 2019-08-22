@@ -31,8 +31,8 @@ public class TraceCycleController extends BaseController {
             @ApiImplicitParam(paramType = "query", dataType = "Long", name = "currentPage", value = "当前页码", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "Long", name = "pageSize", value = "每页记录数", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "String", name = "cycleCode", value = "环节代码", required = false),
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "cycleCn", value = "环节中文名称", required = false),
-            @ApiImplicitParam(paramType = "query", dataType = "String", name = "cycleEn", value = "环节英文名称", required = false),
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "cycleNameCn", value = "环节中文名称", required = false),
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "cycleNameEn", value = "环节英文名称", required = false),
             @ApiImplicitParam(paramType = "query", dataType = "String", name = "startTime", value = "修改开始时间", required = false),
             @ApiImplicitParam(paramType = "query", dataType = "String", name = "endTime", value = "结束结束时间", required = false)
     })
@@ -68,8 +68,8 @@ public class TraceCycleController extends BaseController {
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "body", dataType = "String", name = "loginUid", value = "登录用户ID", required = true),
             @ApiImplicitParam(paramType = "body", dataType = "String", name = "cycleCode", value = "环节代码", required = false),
-            @ApiImplicitParam(paramType = "body", dataType = "String", name = "cycleCn", value = "环节中文名称", required = false),
-            @ApiImplicitParam(paramType = "body", dataType = "String", name = "cycleEn", value = "环节英文名称", required = false),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "cycleNameCn", value = "环节中文名称", required = false),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "cycleNameEn", value = "环节英文名称", required = false),
             @ApiImplicitParam(paramType = "body", dataType = "String", name = "remark", value = "环节用途描述", required = false)
     })
     @PostMapping("/save")
@@ -83,8 +83,8 @@ public class TraceCycleController extends BaseController {
             @ApiImplicitParam(paramType = "body", dataType = "String", name = "loginUid", value = "登录用户ID", required = true),
             @ApiImplicitParam(paramType = "body", dataType = "String", name = "id", value = "环节主键", required = false),
             @ApiImplicitParam(paramType = "body", dataType = "String", name = "cycleCode", value = "环节代码", required = false),
-            @ApiImplicitParam(paramType = "body", dataType = "String", name = "cycleCn", value = "环节中文名称", required = false),
-            @ApiImplicitParam(paramType = "body", dataType = "String", name = "cycleEn", value = "环节英文名称", required = false),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "cycleNameCn", value = "环节中文名称", required = false),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "cycleNameEn", value = "环节英文名称", required = false),
             @ApiImplicitParam(paramType = "body", dataType = "String", name = "remark", value = "环节用途描述", required = false)
     })
     @PostMapping("/update")

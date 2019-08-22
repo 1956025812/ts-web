@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.authorization.privilege.mapper.dsprivilegewrite.ts.StandardTraceWriteMapper">
+  
+  <resultMap id="BaseResultMap" type="com.authorization.privilege.entity.dsprivelege.ts.StandardTrace">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="cycle_code" jdbcType="VARCHAR" property="cycleCode" />
+    <result column="node_code" jdbcType="VARCHAR" property="nodeCode" />
+    <result column="trace_code" jdbcType="VARCHAR" property="traceCode" />
+    <result column="trace_name_cn" jdbcType="VARCHAR" property="traceNameCn" />
+    <result column="trace_name_en" jdbcType="VARCHAR" property="traceNameEn" />
+    <result column="show_customer" jdbcType="INTEGER" property="showCustomer" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="BIGINT" property="deleteTime" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    id, cycle_code, node_code, trace_code, trace_name_cn, trace_name_en, show_customer, 
+    state, remark, create_by, create_time, update_by, update_time, delete_time
+  </sql>
+
+
+  <insert id="insertSelective" parameterType="com.authorization.privilege.entity.dsprivelege.ts.StandardTrace">
+    insert into t_standard_trace
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="cycleCode != null">
+        cycle_code,
+      </if>
+      <if test="nodeCode != null">
+        node_code,
+      </if>
+      <if test="traceCode != null">
+        trace_code,
+      </if>
+      <if test="traceNameCn != null">
+        trace_name_cn,
+      </if>
+      <if test="traceNameEn != null">
+        trace_name_en,
+      </if>
+      <if test="showCustomer != null">
+        show_customer,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleteTime != null">
+        delete_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="cycleCode != null">
+        #{cycleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeCode != null">
+        #{nodeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="traceCode != null">
+        #{traceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="traceNameCn != null">
+        #{traceNameCn,jdbcType=VARCHAR},
+      </if>
+      <if test="traceNameEn != null">
+        #{traceNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="showCustomer != null">
+        #{showCustomer,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.authorization.privilege.entity.dsprivelege.ts.StandardTrace">
+    update t_standard_trace
+    <set>
+      <if test="cycleCode != null">
+        cycle_code = #{cycleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeCode != null">
+        node_code = #{nodeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="traceCode != null">
+        trace_code = #{traceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="traceNameCn != null">
+        trace_name_cn = #{traceNameCn,jdbcType=VARCHAR},
+      </if>
+      <if test="traceNameEn != null">
+        trace_name_en = #{traceNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="showCustomer != null">
+        show_customer = #{showCustomer,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null">
+        delete_time = #{deleteTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <update id="updateByPrimaryKey" parameterType="com.authorization.privilege.entity.dsprivelege.ts.StandardTrace">
+    update t_standard_trace
+    set cycle_code = #{cycleCode,jdbcType=VARCHAR},
+      node_code = #{nodeCode,jdbcType=VARCHAR},
+      trace_code = #{traceCode,jdbcType=VARCHAR},
+      trace_name_cn = #{traceNameCn,jdbcType=VARCHAR},
+      trace_name_en = #{traceNameEn,jdbcType=VARCHAR},
+      show_customer = #{showCustomer,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+
+  <update id="updateStandardTraceVO" parameterType="com.authorization.privilege.vo.ts.StandardTraceVO">
+    update t_standard_trace
+    <set>
+      <if test="cycleCode != null">
+        cycle_code = #{cycleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeCode != null">
+        node_code = #{nodeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="traceCode != null">
+        trace_code = #{traceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="traceNameCn != null">
+        trace_name_cn = #{traceNameCn,jdbcType=VARCHAR},
+      </if>
+      <if test="traceNameEn != null">
+        trace_name_en = #{traceNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="showCustomer != null">
+        show_customer = #{showCustomer,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null">
+        delete_time = #{deleteTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+      <if test="id != null and id != ''">
+        AND id = #{id}
+      </if>
+      <if test="stids != null and stids.size() > 0">
+        AND id IN
+        <foreach collection="stids" open="(" item="stid" close=")" separator=",">
+          #{stid}
+        </foreach>
+      </if>
+    </trim>
+  </update>
+
+
+
+</mapper>
