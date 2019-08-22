@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+import java.util.List;
+
 @Api(tags = {"TraceNodeController"}, description = "轨迹节点Controller")
 @RestController
 @RequestMapping("/tracenode")
@@ -54,13 +56,24 @@ public class TraceNodeController extends BaseController {
     }
 
 
+    @ApiOperation("查询轨迹节点列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "loginUid", value = "登录用户ID", required = true),
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "cycleCode", value = "环节代码", required = true)
+    })
+    @GetMapping("/list")
+    public ResultVO<List<TraceNodeVO>> selectTraceNodeVOList(@ApiIgnore TraceNodeVO traceNodeVO) throws Exception {
+        return this.traceNodeReadService.selectTraceNodeVOList(traceNodeVO);
+    }
+
+
     @ApiOperation("新增轨迹节点")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "body", dataType = "String", name = "loginUid", value = "登录用户ID", required = true),
             @ApiImplicitParam(paramType = "body", dataType = "String", name = "cycleCode", value = "环节代码", required = false),
             @ApiImplicitParam(paramType = "body", dataType = "String", name = "nodeCode", value = "节点代码", required = false),
-            @ApiImplicitParam(paramType = "body", dataType = "String", name = "nodeCn", value = "节点中文名称", required = false),
-            @ApiImplicitParam(paramType = "body", dataType = "String", name = "nodeEn", value = "节点英文名称", required = false),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "nodeNameCn", value = "节点中文名称", required = false),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "nodeNameEn", value = "节点英文名称", required = false),
             @ApiImplicitParam(paramType = "body", dataType = "String", name = "remark", value = "节点用途描述", required = false)
     })
     @PostMapping("/save")

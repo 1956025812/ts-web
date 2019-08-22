@@ -4,6 +4,8 @@ import com.authorization.privilege.vo.PageVO;
 import com.authorization.privilege.vo.ResultVO;
 import com.authorization.privilege.vo.ts.TraceCycleVO;
 
+import java.util.List;
+
 public interface TraceCycleReadService {
 
     /**
@@ -17,5 +19,5 @@ public interface TraceCycleReadService {
 
     ResultVO<TraceCycleVO> selectTraceCycleVODetail(TraceCycleVO traceCycleVO) throws Exception;
 
-    ResultVO<TraceCycleVO> selectTraceCycleVOList(TraceCycleVO traceCycleVO) throws Exception;
+    ResultVO<List<TraceCycleVO>> selectTraceCycleVOList(TraceCycleVO traceCycleVO) throws Exception;
 }

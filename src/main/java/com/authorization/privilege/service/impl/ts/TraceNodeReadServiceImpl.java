@@ -42,4 +42,13 @@ public class TraceNodeReadServiceImpl implements TraceNodeReadService {
 
         return ResultVO.getSuccess("查询轨迹节点详情成功", traceNode);
     }
+
+
+    @Override
+    public ResultVO<List<TraceNodeVO>> selectTraceNodeVOList(TraceNodeVO traceNodeVO) throws Exception {
+
+        List<TraceNodeVO> traceNodeVOList = this.traceNodeReadMapper.selectTraceNodeVOList(traceNodeVO);
+
+        return ResultVO.getSuccess("查询轨迹节点列表成功", traceNodeVOList);
+    }
 }

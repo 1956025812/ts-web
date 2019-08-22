@@ -45,7 +45,7 @@ public class TraceCycleReadServiceImpl implements TraceCycleReadService {
 
 
     @Override
-    public ResultVO<TraceCycleVO> selectTraceCycleVOList(TraceCycleVO traceCycleVO) throws Exception {
+    public ResultVO<List<TraceCycleVO>> selectTraceCycleVOList(TraceCycleVO traceCycleVO) throws Exception {
 
         List<TraceCycleVO> traceCycleVOList = this.traceCycleReadMapper.selectTraceCycleVOList(traceCycleVO);
 

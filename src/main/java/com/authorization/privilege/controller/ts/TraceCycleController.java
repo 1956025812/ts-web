@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+import java.util.List;
+
 @Api(tags = {"TraceCycleController"}, description = "轨迹环节Controller")
 @RestController
 @RequestMapping("/tracecycle")
@@ -59,7 +61,7 @@ public class TraceCycleController extends BaseController {
             @ApiImplicitParam(paramType = "query", dataType = "String", name = "id", value = "轨迹环节ID", required = false)
     })
     @GetMapping("/list")
-    public ResultVO<TraceCycleVO> selectTraceCycleVOList(@ApiIgnore TraceCycleVO traceCycleVO) throws Exception {
+    public ResultVO<List<TraceCycleVO>> selectTraceCycleVOList(@ApiIgnore TraceCycleVO traceCycleVO) throws Exception {
         return this.traceCycleReadService.selectTraceCycleVOList(traceCycleVO);
     }
 
