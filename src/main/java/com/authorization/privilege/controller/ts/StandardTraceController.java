@@ -93,7 +93,7 @@ public class StandardTraceController extends BaseController {
     }
 
 
-    @ApiOperation("删除标准轨迹1")
+    @ApiOperation("删除标准轨迹")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "body", dataType = "String", name = "loginUid", value = "登录用户ID", required = true),
             @ApiImplicitParam(paramType = "body", dataType = "String", name = "id", value = "标准轨迹主键ID", required = false),
