@@ -20,6 +20,9 @@ public class BaseVO {
     @ApiModelProperty("当前登录用户ID")
     private String loginUid;
 
+    @ApiModelProperty("统一日志ID")
+    private String logId;
+
     @ApiModelProperty("当前页码")
     private Integer currentPage;
 
@@ -50,6 +53,13 @@ public class BaseVO {
     @ApiModelProperty("结束月份 格式：yyyy-MM")
     private YearMonth endMonth;
 
+    public String getLogId() {
+        return logId;
+    }
+
+    public void setLogId(String logId) {
+        this.logId = logId;
+    }
 
     public Integer getCurrentPage() {
         return currentPage;

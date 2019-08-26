@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.authorization.privilege.mapper.dsprivilegewrite.ts.BaseOperateLogWriteMapper">
+  
+  <resultMap id="BaseResultMap" type="com.authorization.privilege.entity.dsprivelege.ts.BaseOperateLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="belong_type" jdbcType="INTEGER" property="belongType" />
+    <result column="third_record_id" jdbcType="BIGINT" property="thirdRecordId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    id, belong_type, third_record_id, remark, create_by, create_time
+  </sql>
+
+
+  <insert id="insertSelective" parameterType="com.authorization.privilege.entity.dsprivelege.ts.BaseOperateLog">
+    insert into base_operate_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="belongType != null">
+        belong_type,
+      </if>
+      <if test="thirdRecordId != null">
+        third_record_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="belongType != null">
+        #{belongType,jdbcType=INTEGER},
+      </if>
+      <if test="thirdRecordId != null">
+        #{thirdRecordId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.authorization.privilege.entity.dsprivelege.ts.BaseOperateLog">
+    update base_operate_log
+    <set>
+      <if test="belongType != null">
+        belong_type = #{belongType,jdbcType=INTEGER},
+      </if>
+      <if test="thirdRecordId != null">
+        third_record_id = #{thirdRecordId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <update id="updateByPrimaryKey" parameterType="com.authorization.privilege.entity.dsprivelege.ts.BaseOperateLog">
+    update base_operate_log
+    set belong_type = #{belongType,jdbcType=INTEGER},
+      third_record_id = #{thirdRecordId,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+</mapper>

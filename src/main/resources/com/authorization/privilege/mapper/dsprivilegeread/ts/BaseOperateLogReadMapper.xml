@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.authorization.privilege.mapper.dsprivilegeread.ts.BaseOperateLogReadMapper">
+  
+  <resultMap id="BaseResultMap" type="com.authorization.privilege.entity.dsprivelege.ts.BaseOperateLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="belong_type" jdbcType="INTEGER" property="belongType" />
+    <result column="third_record_id" jdbcType="BIGINT" property="thirdRecordId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+
+  <resultMap id="SelectBaseOperateLogVOListMap" type="com.authorization.privilege.vo.ts.BaseOperateLogVO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="belong_type" jdbcType="INTEGER" property="belongType" />
+    <result column="third_record_id" jdbcType="BIGINT" property="thirdRecordId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    id, belong_type, third_record_id, remark, create_by, create_time
+  </sql>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+        <include refid="Base_Column_List" />
+    FROM
+        base_operate_log
+    WHERE
+        id = #{id,jdbcType=BIGINT}
+  </select>
+
+
+
+  <select id="selectBaseOperateLogVOList" parameterType="com.authorization.privilege.vo.ts.BaseOperateLogVO"
+          resultMap="SelectBaseOperateLogVOListMap">
+    SELECT
+        id, belong_type, third_record_id, remark, create_by, create_time
+    FROM
+        base_operate_log
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+      <if test="belongType != null">
+        AND belong_type = #{belongType}
+      </if>
+      <if test="thirdRecordId != null">
+        AND third_record_id = #{thirdRecordId}
+      </if>
+      <if test="createBy != null and createBy != ''">
+        AND create_by LIKE CONCAT("%", #{createBy}, "%")
+      </if>
+      <if test="remark != null and remark != ''">
+        AND remark LIKE CONCAT("%", #{remark}, "%")
+      </if>
+      <if test="startTime != null">
+        AND update_time >= #{startTime}
+      </if>
+      <if test="endTime != null">
+        AND update_time <![CDATA[ <= ]]> #{endTime}
+      </if>
+    </trim>
+    ORDER BY create_time DESC
+  </select>
+
+
+</mapper>
