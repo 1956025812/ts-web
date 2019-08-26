@@ -13,6 +13,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import springfox.documentation.annotations.ApiIgnore;
 
 @Api(tags = {"StandardTraceController"}, description = "标准轨迹Controller")
@@ -102,6 +103,15 @@ public class StandardTraceController extends BaseController {
     @PostMapping("/delete")
     public ResultVO<Void> deleteStandardTrace(@ApiIgnore @RequestBody StandardTraceVO standardTraceVO) throws Exception {
         return this.standardTraceWriteService.deleteStandardTrace(standardTraceVO);
+    }
+
+
+    @PostMapping("/import")
+    public ResultVO<Void> importStandardTrace(@RequestParam("uploadFile") MultipartFile uploadFile) throws Exception {
+        if (null != uploadFile) {
+            System.out.println(uploadFile.getName());
+        }
+        return ResultVO.getSuccess("导入成功TODO");
     }
 
 

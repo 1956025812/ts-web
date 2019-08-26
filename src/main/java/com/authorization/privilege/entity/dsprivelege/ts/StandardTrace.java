@@ -1,6 +1,7 @@
 package com.authorization.privilege.entity.dsprivelege.ts;
 
 import com.authorization.privilege.vo.BaseVO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -115,6 +116,7 @@ public class StandardTrace extends BaseVO implements Serializable {
         this.createBy = createBy == null ? null : createBy.trim();
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public LocalDateTime getCreateTime() {
         return createTime;
     }
@@ -131,6 +133,7 @@ public class StandardTrace extends BaseVO implements Serializable {
         this.updateBy = updateBy == null ? null : updateBy.trim();
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public LocalDateTime getUpdateTime() {
         return updateTime;
     }
