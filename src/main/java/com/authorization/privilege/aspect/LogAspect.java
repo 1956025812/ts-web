@@ -26,7 +26,7 @@ public class LogAspect {
 
     private final static Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
-    // ..表示包及子包 该方法代表controller层的所有方法   注意： BaseController中的方法不需要执行切面 以及 import开头的方法不执行切面
+    // ..表示包及子包 该方法代表controller层的所有方法   注意： BaseController中的方法不需要执行切面
     @Pointcut("execution(public * com.authorization.privilege.controller..*.*(..)) "
             + "&& !execution(public * com.authorization.privilege.controller.BaseController.*(..))"
     )
