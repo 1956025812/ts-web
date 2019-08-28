@@ -198,7 +198,7 @@
   </update>
 
 
-  <update id="deleteWaitStandardTrace" parameterType="com.authorization.privilege.vo.ts.WaitStandardTraceVO">
+  <update id="updateWaitStandardTraceVO" parameterType="com.authorization.privilege.vo.ts.WaitStandardTraceVO">
     update wait_standard_trace
     <set>
       <if test="logisticsMainNo != null">
@@ -244,15 +244,17 @@
         delete_time = #{deleteTime,jdbcType=BIGINT},
       </if>
     </set>
-    <if test="id != null and id != ''">
-      AND id = #{id}
-    </if>
-    <if test="wstids != null and wstids.size() > 0">
-      AND id IN
-      <foreach collection="wstids" open="(" item="wstid" close=")" separator=",">
-        #{wstid}
-      </foreach>
-    </if>
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+      <if test="id != null and id != ''">
+        AND id = #{id}
+      </if>
+      <if test="wstids != null and wstids.size() > 0">
+        AND id IN
+        <foreach collection="wstids" open="(" item="wstid" close=")" separator=",">
+          #{wstid}
+        </foreach>
+      </if>
+    </trim>
   </update>
 
 

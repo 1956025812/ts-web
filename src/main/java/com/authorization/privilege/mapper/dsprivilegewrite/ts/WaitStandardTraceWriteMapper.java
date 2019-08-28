@@ -12,5 +12,5 @@ public interface WaitStandardTraceWriteMapper {
 
     void updateByPrimaryKey(WaitStandardTrace waitStandardTrace) throws Exception;
 
-    void deleteWaitStandardTrace(WaitStandardTraceVO newWaitStandardTraceVO) throws Exception;
+    void updateWaitStandardTraceVO(WaitStandardTraceVO newWaitStandardTraceVO) throws Exception;
 }

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.authorization.privilege.mapper.dsprivilegeread.ts.TraceOriginalStandardReadMapper">
+
+  <resultMap id="BaseResultMap" type="com.authorization.privilege.entity.dsprivelege.ts.TraceOriginalStandard">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="relation_no" jdbcType="VARCHAR" property="relationNo" />
+    <result column="original_trace_code" jdbcType="VARCHAR" property="originalTraceCode" />
+    <result column="standard_trace_code" jdbcType="VARCHAR" property="standardTraceCode" />
+    <result column="logistics_agent_code" jdbcType="VARCHAR" property="logisticsAgentCode" />
+    <result column="logistics_method_code" jdbcType="VARCHAR" property="logisticsMethodCode" />
+    <result column="condition_desc" jdbcType="VARCHAR" property="conditionDesc" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="BIGINT" property="deleteTime" />
+  </resultMap>
+
+
+  <resultMap id="SelectTraceOriginalStandardVOListMap" type="com.authorization.privilege.vo.ts.TraceOriginalStandardVO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="relation_no" jdbcType="VARCHAR" property="relationNo" />
+    <result column="original_trace_code" jdbcType="VARCHAR" property="originalTraceCode" />
+    <result column="standard_trace_code" jdbcType="VARCHAR" property="standardTraceCode" />
+    <result column="logistics_agent_code" jdbcType="VARCHAR" property="logisticsAgentCode" />
+    <result column="logistics_method_code" jdbcType="VARCHAR" property="logisticsMethodCode" />
+    <result column="condition_desc" jdbcType="VARCHAR" property="conditionDesc" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    id, relation_no, original_trace_code, standard_trace_code, logistics_agent_code, logistics_method_code,
+    condition_desc, create_by, create_time, update_by, update_time, delete_time
+  </sql>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+        <include refid="Base_Column_List" />
+    FROM
+        trace_original_standard
+    WHERE
+        id = #{id,jdbcType=BIGINT}
+  </select>
+
+
+  <select id="selectTraceOriginalStandardVOList" parameterType="com.authorization.privilege.vo.ts.TraceOriginalStandardVO"
+          resultMap="SelectTraceOriginalStandardVOListMap">
+    SELECT
+        id, relation_no, original_trace_code, standard_trace_code, logistics_agent_code, logistics_method_code,
+        condition_desc, create_by, create_time, update_by, update_time
+    FROM
+        trace_original_standard
+    WHERE
+        delete_time = 0
+        <if test="relationNo != null and relationNo != ''">
+          AND relation_no LIKE CONCAT ("%", #{relationNo} "%")
+        </if>
+        <if test="logisticsAgentCode != null and logisticsAgentCode != ''">
+          AND logistics_agent_code LIKE CONCAT ("%", #{logisticsAgentCode} "%")
+        </if>
+        <if test="logisticsMethodCode != null and logisticsMethodCode != ''">
+          AND logistics_method_code LIKE CONCAT ("%", #{logisticsMethodCode} "%")
+        </if>
+        <if test="standardTraceCode != null and standardTraceCode != ''">
+          AND standard_trace_code LIKE CONCAT ("%", #{standardTraceCode} "%")
+        </if>
+        <if test="conditionDesc != null and conditionDesc != ''">
+          AND condition_desc LIKE CONCAT ("%", #{conditionDesc} "%")
+        </if>
+        <if test="startTime != null">
+          AND update_time >= #{startTime}
+        </if>
+        <if test="endTime != null">
+          AND update_time <![CDATA[ <= ]]> #{endTime}
+        </if>
+    ORDER BY update_time DESC
+  </select>
+
+
+
+</mapper>

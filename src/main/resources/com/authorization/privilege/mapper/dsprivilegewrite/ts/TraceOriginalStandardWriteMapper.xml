@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.authorization.privilege.mapper.dsprivilegewrite.ts.TraceOriginalStandardWriteMapper">
+
+  <resultMap id="BaseResultMap" type="com.authorization.privilege.entity.dsprivelege.ts.TraceOriginalStandard">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="relation_no" jdbcType="VARCHAR" property="relationNo" />
+    <result column="original_trace_code" jdbcType="VARCHAR" property="originalTraceCode" />
+    <result column="standard_trace_code" jdbcType="VARCHAR" property="standardTraceCode" />
+    <result column="logistics_agent_code" jdbcType="VARCHAR" property="logisticsAgentCode" />
+    <result column="logistics_method_code" jdbcType="VARCHAR" property="logisticsMethodCode" />
+    <result column="condition_desc" jdbcType="VARCHAR" property="conditionDesc" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="BIGINT" property="deleteTime" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    id, relation_no, original_trace_code, standard_trace_code, logistics_agent_code, logistics_method_code,
+    condition_desc, create_by, create_time, update_by, update_time, delete_time
+  </sql>
+
+
+  <insert id="insertSelective" parameterType="com.authorization.privilege.entity.dsprivelege.ts.TraceOriginalStandard">
+    insert into trace_original_standard
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="relationNo != null">
+        relation_no,
+      </if>
+      <if test="originalTraceCode != null">
+        original_trace_code,
+      </if>
+      <if test="logisticsAgentCode != null">
+        logistics_agent_code,
+      </if>
+      <if test="logisticsMethodCode != null">
+        logistics_method_code,
+      </if>
+      <if test="standardTraceCode != null">
+        standard_trace_code,
+      </if>
+      <if test="conditionDesc != null">
+        condition_desc,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleteTime != null">
+        delete_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="relationNo != null">
+        #{relationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="originalTraceCode != null">
+        #{originalTraceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="standardTraceCode != null">
+        #{standardTraceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsAgentCode != null">
+        #{logisticsAgentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsMethodCode != null">
+        #{logisticsMethodCode,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionDesc != null">
+        #{conditionDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.authorization.privilege.entity.dsprivelege.ts.TraceOriginalStandard">
+    update trace_original_standard
+    <set>
+      <if test="relationNo != null">
+        relation_no = #{relationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="originalTraceCode != null">
+        original_trace_code = #{originalTraceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="standardTraceCode != null">
+        standard_trace_code = #{standardTraceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsAgentCode != null">
+        logistics_agent_code = #{logisticsAgentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsMethodCode != null">
+        logistics_method_code = #{logisticsMethodCode,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionDesc != null">
+        condition_desc = #{conditionDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null">
+        delete_time = #{deleteTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <update id="updateByPrimaryKey" parameterType="com.authorization.privilege.entity.dsprivelege.ts.TraceOriginalStandard">
+    update trace_original_standard
+    set relation_no = #{relationNo,jdbcType=VARCHAR},
+      original_trace_code = #{originalTraceCode,jdbcType=VARCHAR},
+      standard_trace_code = #{standardTraceCode,jdbcType=VARCHAR},
+      condition_desc = #{conditionDesc,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <update id="updateTraceOriginalStandardVO" parameterType="com.authorization.privilege.vo.ts.TraceOriginalStandardVO">
+    update trace_original_standard
+    <set>
+      <if test="relationNo != null">
+        relation_no = #{relationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="originalTraceCode != null">
+        original_trace_code = #{originalTraceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="standardTraceCode != null">
+        standard_trace_code = #{standardTraceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsAgentCode != null">
+        logistics_agent_code = #{logisticsAgentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsMethodCode != null">
+        logistics_method_code = #{logisticsMethodCode,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionDesc != null">
+        condition_desc = #{conditionDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null">
+        delete_time = #{deleteTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+      <if test="id != null and id != ''">
+        AND id = #{id}
+      </if>
+      <if test="tosids != null and tosids.size() > 0">
+        AND id IN
+        <foreach collection="tosids" open="(" item="tosid" close=")" separator=",">
+          #{tosid}
+        </foreach>
+      </if>
+    </trim>
+  </update>
+
+
+</mapper>

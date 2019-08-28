@@ -26,7 +26,7 @@ public class WaitStandardTraceWriteServiceImpl implements WaitStandardTraceWrite
         newWaitStandardTraceVO.setId(waitStandardTraceVO.getId());
         newWaitStandardTraceVO.setWstids(waitStandardTraceVO.getWstids());
         newWaitStandardTraceVO.setDeleteTime(LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli());
-        this.waitStandardTraceWriteMapper.deleteWaitStandardTrace(newWaitStandardTraceVO);
+        this.waitStandardTraceWriteMapper.updateWaitStandardTraceVO(newWaitStandardTraceVO);
 
         return ResultVO.getSuccess("删除带标准化轨迹成功");
     }
