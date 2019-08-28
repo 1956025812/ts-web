@@ -198,5 +198,63 @@
   </update>
 
 
+  <update id="deleteWaitStandardTrace" parameterType="com.authorization.privilege.vo.ts.WaitStandardTraceVO">
+    update wait_standard_trace
+    <set>
+      <if test="logisticsMainNo != null">
+        logistics_main_no = #{logisticsMainNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerReferenceNo != null">
+        customer_reference_no = #{customerReferenceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="agentNo != null">
+        agent_no = #{agentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsProductCode != null">
+        logistics_product_code = #{logisticsProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsChannelCode != null">
+        logistics_channel_code = #{logisticsChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="originalTraceCode != null">
+        original_trace_code = #{originalTraceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="originalTraceRemark != null">
+        original_trace_remark = #{originalTraceRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="traceCreateTime != null">
+        trace_create_time = #{traceCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="traceSource != null">
+        trace_source = #{traceSource,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null">
+        delete_time = #{deleteTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="id != null and id != ''">
+      AND id = #{id}
+    </if>
+    <if test="wstids != null and wstids.size() > 0">
+      AND id IN
+      <foreach collection="wstids" open="(" item="wstid" close=")" separator=",">
+        #{wstid}
+      </foreach>
+    </if>
+  </update>
+
+
 
 </mapper>

@@ -11,9 +11,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 @Api(tags = {"WaitStandardTraceController"}, description = "待标准化轨迹Controller")
@@ -41,6 +39,18 @@ public class WaitStandardTraceController extends BaseController {
     @GetMapping("/page")
     public ResultVO<PageVO<WaitStandardTraceVO>> selectWaitStandardTraceVOPage(@ApiIgnore WaitStandardTraceVO waitStandardTraceVO) throws Exception {
         return this.waitStandardTraceReadService.selectWaitStandardTraceVOPage(waitStandardTraceVO);
+    }
+
+
+    @ApiOperation("删除待标准化轨迹")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "loginUid", value = "登录用户ID", required = true),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "id", value = "待标准化轨迹主键ID", required = false),
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "wstids", value = "待标准化轨迹主键ID集合", required = false)
+    })
+    @PostMapping("/delete")
+    public ResultVO<Void> deleteWaitStandardTrace(@ApiIgnore @RequestBody WaitStandardTraceVO waitStandardTraceVO) throws Exception {
+        return this.waitStandardTraceWriteService.deleteWaitStandardTrace(waitStandardTraceVO);
     }
 
 
