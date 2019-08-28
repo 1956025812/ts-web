@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.authorization.privilege.mapper.dsprivilegeread.ts.WaitStandardTraceReadMapper">
+  
+  <resultMap id="BaseResultMap" type="com.authorization.privilege.entity.dsprivelege.ts.WaitStandardTrace">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="logistics_main_no" jdbcType="VARCHAR" property="logisticsMainNo" />
+    <result column="customer_reference_no" jdbcType="VARCHAR" property="customerReferenceNo" />
+    <result column="agent_no" jdbcType="VARCHAR" property="agentNo" />
+    <result column="logistics_product_code" jdbcType="VARCHAR" property="logisticsProductCode" />
+    <result column="logistics_channel_code" jdbcType="VARCHAR" property="logisticsChannelCode" />
+    <result column="original_trace_code" jdbcType="VARCHAR" property="originalTraceCode" />
+    <result column="original_trace_remark" jdbcType="VARCHAR" property="originalTraceRemark" />
+    <result column="trace_create_time" jdbcType="TIMESTAMP" property="traceCreateTime" />
+    <result column="trace_source" jdbcType="INTEGER" property="traceSource" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="BIGINT" property="deleteTime" />
+  </resultMap>
+
+
+  <resultMap id="SelectWaitStandardTraceVOListMap" type="com.authorization.privilege.vo.ts.WaitStandardTraceVO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="logistics_main_no" jdbcType="VARCHAR" property="logisticsMainNo" />
+    <result column="customer_reference_no" jdbcType="VARCHAR" property="customerReferenceNo" />
+    <result column="agent_no" jdbcType="VARCHAR" property="agentNo" />
+    <result column="logistics_product_code" jdbcType="VARCHAR" property="logisticsProductCode" />
+    <result column="logistics_channel_code" jdbcType="VARCHAR" property="logisticsChannelCode" />
+    <result column="original_trace_code" jdbcType="VARCHAR" property="originalTraceCode" />
+    <result column="original_trace_remark" jdbcType="VARCHAR" property="originalTraceRemark" />
+    <result column="trace_create_time" jdbcType="TIMESTAMP" property="traceCreateTime" />
+    <result column="trace_source" jdbcType="INTEGER" property="traceSource" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="BIGINT" property="deleteTime" />
+  </resultMap>
+
+
+
+  <sql id="Base_Column_List">
+    id, logistics_main_no, customer_reference_no, agent_no, logistics_product_code, logistics_channel_code, 
+    original_trace_code, original_trace_remark, trace_create_time, trace_source, create_by, 
+    create_time, update_by, update_time, delete_time
+  </sql>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+        <include refid="Base_Column_List" />
+    FROM
+        wait_standard_trace
+    WHERE
+        id = #{id,jdbcType=BIGINT}
+  </select>
+
+
+  <select id="selectWaitStandardTraceVOList" parameterType="com.authorization.privilege.vo.ts.WaitStandardTraceVO"
+          resultMap="SelectWaitStandardTraceVOListMap">
+    SELECT
+        id, logistics_main_no, customer_reference_no, agent_no, logistics_product_code, logistics_channel_code,
+        original_trace_code, original_trace_remark, trace_create_time, trace_source, create_by,
+        create_time, update_by, update_time
+    FROM
+        wait_standard_trace
+    WHERE
+        delete_time = 0
+        <if test="logisticsMainNo != null and logisticsMainNo != ''">
+          AND logistics_main_no = #{logisticsMainNo}
+        </if>
+        <if test="agentNo != null and agentNo != ''">
+          AND agent_no = #{agentNo}
+        </if>
+        <if test="logisticsProductCode != null and logisticsProductCode != ''">
+          AND logistics_product_code = #{logisticsProductCode}
+        </if>
+        <if test="startTime != null">
+          AND update_time >= #{startTime}
+        </if>
+        <if test="endTime != null">
+          AND update_time <![CDATA[ <= ]]> #{endTime}
+        </if>
+    ORDER BY create_time DESC
+  </select>
+
+
+
+</mapper>

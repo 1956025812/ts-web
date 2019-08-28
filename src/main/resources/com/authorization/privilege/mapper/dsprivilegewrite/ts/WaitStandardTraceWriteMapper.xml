@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.authorization.privilege.mapper.dsprivilegewrite.ts.WaitStandardTraceWriteMapper">
+
+  <resultMap id="BaseResultMap" type="com.authorization.privilege.entity.dsprivelege.ts.WaitStandardTrace">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="logistics_main_no" jdbcType="VARCHAR" property="logisticsMainNo" />
+    <result column="customer_reference_no" jdbcType="VARCHAR" property="customerReferenceNo" />
+    <result column="agent_no" jdbcType="VARCHAR" property="agentNo" />
+    <result column="logistics_product_code" jdbcType="VARCHAR" property="logisticsProductCode" />
+    <result column="logistics_channel_code" jdbcType="VARCHAR" property="logisticsChannelCode" />
+    <result column="original_trace_code" jdbcType="VARCHAR" property="originalTraceCode" />
+    <result column="original_trace_remark" jdbcType="VARCHAR" property="originalTraceRemark" />
+    <result column="trace_create_time" jdbcType="TIMESTAMP" property="traceCreateTime" />
+    <result column="trace_source" jdbcType="INTEGER" property="traceSource" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="BIGINT" property="deleteTime" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    id, logistics_main_no, customer_reference_no, agent_no, logistics_product_code, logistics_channel_code, 
+    original_trace_code, original_trace_remark, trace_create_time, trace_source, create_by, 
+    create_time, update_by, update_time, delete_time
+  </sql>
+
+
+
+  <insert id="insertSelective" parameterType="com.authorization.privilege.entity.dsprivelege.ts.WaitStandardTrace">
+    insert into wait_standard_trace
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="logisticsMainNo != null">
+        logistics_main_no,
+      </if>
+      <if test="customerReferenceNo != null">
+        customer_reference_no,
+      </if>
+      <if test="agentNo != null">
+        agent_no,
+      </if>
+      <if test="logisticsProductCode != null">
+        logistics_product_code,
+      </if>
+      <if test="logisticsChannelCode != null">
+        logistics_channel_code,
+      </if>
+      <if test="originalTraceCode != null">
+        original_trace_code,
+      </if>
+      <if test="originalTraceRemark != null">
+        original_trace_remark,
+      </if>
+      <if test="traceCreateTime != null">
+        trace_create_time,
+      </if>
+      <if test="traceSource != null">
+        trace_source,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleteTime != null">
+        delete_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="logisticsMainNo != null">
+        #{logisticsMainNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerReferenceNo != null">
+        #{customerReferenceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="agentNo != null">
+        #{agentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsProductCode != null">
+        #{logisticsProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsChannelCode != null">
+        #{logisticsChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="originalTraceCode != null">
+        #{originalTraceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="originalTraceRemark != null">
+        #{originalTraceRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="traceCreateTime != null">
+        #{traceCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="traceSource != null">
+        #{traceSource,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.authorization.privilege.entity.dsprivelege.ts.WaitStandardTrace">
+    update wait_standard_trace
+    <set>
+      <if test="logisticsMainNo != null">
+        logistics_main_no = #{logisticsMainNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerReferenceNo != null">
+        customer_reference_no = #{customerReferenceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="agentNo != null">
+        agent_no = #{agentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsProductCode != null">
+        logistics_product_code = #{logisticsProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsChannelCode != null">
+        logistics_channel_code = #{logisticsChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="originalTraceCode != null">
+        original_trace_code = #{originalTraceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="originalTraceRemark != null">
+        original_trace_remark = #{originalTraceRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="traceCreateTime != null">
+        trace_create_time = #{traceCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="traceSource != null">
+        trace_source = #{traceSource,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null">
+        delete_time = #{deleteTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <update id="updateByPrimaryKey" parameterType="com.authorization.privilege.entity.dsprivelege.ts.WaitStandardTrace">
+    update wait_standard_trace
+    set logistics_main_no = #{logisticsMainNo,jdbcType=VARCHAR},
+      customer_reference_no = #{customerReferenceNo,jdbcType=VARCHAR},
+      agent_no = #{agentNo,jdbcType=VARCHAR},
+      logistics_product_code = #{logisticsProductCode,jdbcType=VARCHAR},
+      logistics_channel_code = #{logisticsChannelCode,jdbcType=VARCHAR},
+      original_trace_code = #{originalTraceCode,jdbcType=VARCHAR},
+      original_trace_remark = #{originalTraceRemark,jdbcType=VARCHAR},
+      trace_create_time = #{traceCreateTime,jdbcType=TIMESTAMP},
+      trace_source = #{traceSource,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+
+</mapper>
